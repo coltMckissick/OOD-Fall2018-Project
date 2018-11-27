@@ -26,10 +26,20 @@ public class ItineraryAppendBill extends ItineraryDecorator {
         toOutput.append(System.lineSeparator());
         if(paymentType instanceof  PaymentTypeCash)
             toOutput.append("Payed with cash.");
-        else if(paymentType instanceof  PaymentTypeCheck)
+        else if(paymentType instanceof  PaymentTypeCheck) {
             toOutput.append("Payed with check.");
-        else
-            toOutput.append("Payed with credit.");//add more to this later
+            PaymentTypeCheck typeCheck = (PaymentTypeCheck)paymentType;
+            toOutput.append(System.lineSeparator());
+            toOutput.append("Check Number: " + typeCheck.getCheckNumber());
+        }
+        else {
+            toOutput.append("Payed with credit.");
+            toOutput.append(System.lineSeparator());
+            PaymentTypeCredit typeCredit = (PaymentTypeCredit)paymentType;
+            toOutput.append("Credit Card Number: " + typeCredit.getCreditCardNumber());
+            toOutput.append(System.lineSeparator());
+            toOutput.append("Expiration Date: " + typeCredit.getExpirationDate());
+        }
 
         return toOutput.toString();
     }

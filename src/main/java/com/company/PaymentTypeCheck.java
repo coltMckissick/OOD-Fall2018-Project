@@ -26,4 +26,8 @@ public class PaymentTypeCheck extends PaymentType {
             return false;
         }
     }
+
+    public int getCheckNumber(){
+        return _checkNumber;
+    }
 }
